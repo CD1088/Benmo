@@ -1,7 +1,7 @@
 import { use } from 'react';
 import RenderFoodItem from './foodItem'
 
-function PrintItems(items, user) {
+function PrintItems({items, user}) {
     return (
         <div>
             <table>

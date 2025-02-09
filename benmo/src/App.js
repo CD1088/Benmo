@@ -28,7 +28,15 @@ function App() {
       owner: -1
     }
   ];
-  return PrintItems(items, user);
+
+  return (
+    <>
+      <div style={{ position: 'absolute', top: 0, right: 0 }}>
+        <Customers />
+      </div>
+      <PrintItems items={items} user={user} />
+    </>
+  );
 }
 
 export default App;
