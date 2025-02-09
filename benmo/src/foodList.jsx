@@ -1,3 +1,4 @@
+import { use } from 'react';
 import RenderFoodItem from './foodItem'
 
 function PrintItems(items, user) {
@@ -8,9 +9,11 @@ function PrintItems(items, user) {
                     <th>Item</th>
                     <th>Cost</th>
                 </tr>
-                <RenderFoodItem foodItem={items[0]} user={user} />
-                <RenderFoodItem foodItem={items[1]} user={user} />
-                <RenderFoodItem foodItem={items[2]} user={user} />
+                {items.map((val, key) => {
+                    return (
+                        <RenderFoodItem foodItem={val} user={user} />
+                    )
+                })}
             </table>
         </div>
     );

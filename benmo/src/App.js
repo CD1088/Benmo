@@ -19,6 +19,11 @@ function App() {
       name: "Boba",
       cost: 7,
       owner: -1
+    },
+    {
+      name: "Soup",
+      cost: 4,
+      owner: -1
     }
   ];
   return PrintItems(items, user);
