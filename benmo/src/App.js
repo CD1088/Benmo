@@ -15,7 +15,7 @@ function App() {
           <th>Item</th>
           <th>Cost</th>
         </tr>
-        <RenderFoodItem foodItem={item1} user="3" />
+        <RenderFoodItem foodItem={item1} user={3} />
       </table>
     </div>
   );
