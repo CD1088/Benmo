@@ -1,6 +1,8 @@
 import PrintItems from './foodList'
 
 import './App.css';
+import React from 'react';
+import Customers from './Customers.tsx';
 
 function App() {
   var user = 3;
