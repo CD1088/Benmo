@@ -3,6 +3,7 @@ import RenderFoodItem from './foodItem'
 import './App.css';
 
 function App() {
+  var user = 3;
   const items = [
     {
       name: "Noodles",
@@ -13,7 +14,8 @@ function App() {
       name: "Rice",
       cost: 5,
       owner: -1
-    }, {
+    },
+    {
       name: "Boba",
       cost: 7,
       owner: -1
@@ -26,9 +28,9 @@ function App() {
           <th>Item</th>
           <th>Cost</th>
         </tr>
-        <RenderFoodItem foodItem={items[0]} user={3} />
-        <RenderFoodItem foodItem={items[1]} user={3} />
-        <RenderFoodItem foodItem={items[2]} user={3} />
+        <RenderFoodItem foodItem={items[0]} user={user} />
+        <RenderFoodItem foodItem={items[1]} user={user} />
+        <RenderFoodItem foodItem={items[2]} user={user} />
       </table>
     </div>
   );
