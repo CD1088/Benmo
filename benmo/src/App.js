@@ -1,8 +1,9 @@
-// import logo from './logo.svg';
-import RenderFoodItem from './foodItem'
+import PrintItems from './foodList'
+
 import './App.css';
 
 function App() {
+  var user = 3;
   const items = [
     {
       name: "Noodles",
@@ -13,25 +14,14 @@ function App() {
       name: "Rice",
       cost: 5,
       owner: -1
-    }, {
+    },
+    {
       name: "Boba",
       cost: 7,
       owner: -1
     }
   ];
-  return (
-    <div>
-      <table>
-        <tr>
-          <th>Item</th>
-          <th>Cost</th>
-        </tr>
-        <RenderFoodItem foodItem={items[0]} user={3} />
-        <RenderFoodItem foodItem={items[1]} user={3} />
-        <RenderFoodItem foodItem={items[2]} user={3} />
-      </table>
-    </div>
-  );
+  return PrintItems(items, user);
 }
 
 export default App;
