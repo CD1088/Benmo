@@ -1,35 +1,22 @@
-import React, { useState, createContext, FC } from 'react';
-
-// Define types for customer data
-interface Customer {
-    id: string;
-    isActive: boolean;
-    foods: string[];
-    total: number;
-}
+import React, { useState, useEffect, createContext, FC } from 'react';
+import Customer from './Customer.tsx';
 
 // Create a Context for the Customers
 export const CustomersContext = createContext<Customer[]>([]);
 
-// Customer component to render individual customer
-const Customer: FC<{ customer: Customer; onClick: () => void }> = ({ customer, onClick }) => {
-    return (
-        <div onClick={onClick} style={{ cursor: 'pointer', backgroundColor: customer.isActive ? 'lightgreen' : 'white' }}>
-            <h3>{customer.id}</h3>
-            <p>Email: {customer.isActive ? 'Active' : 'Inactive'}</p>
-            <p>Foods: {customer.foods.join(', ')}</p>
-            <p>Total: {customer.total}</p>
-        </div>
-    );
-};
-
 const Customers: FC = () => {
-    // Initialize state with an array of customer objects
-    const [customers, setCustomers] = useState<Customer[]>([
+    // Retrieve initial state from local storage or use default state
+    const initialCustomers = JSON.parse(localStorage.getItem('customers') || '[]') as Customer[];
+    const [customers, setCustomers] = useState<Customer[]>(initialCustomers.length > 0 ? initialCustomers : [
         { id: '1', isActive: true, foods: ['Pizza', 'Burger'], total: 100 },
         { id: '2', isActive: false, foods: ['Sushi', 'Ramen'], total: 200 },
         { id: '3', isActive: false, foods: ['Pasta', 'Salad'], total: 150 }
     ]);
+
+    // Save customers state to local storage whenever it changes
+    useEffect(() => {
+        localStorage.setItem('customers', JSON.stringify(customers));
+    }, [customers]);
 
     // Function to handle customer click
     const handleCustomerClick = (index: number) => {
