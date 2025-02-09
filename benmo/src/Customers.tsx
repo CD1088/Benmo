@@ -1,20 +1,23 @@
-import React, { FC, createContext } from "react";
-import Customer, { CustomerData } from "./Customer.tsx";
-import useLocalStorage from "./hooks/useLocalStorage.ts"; // Import the custom hook
-import OrderList from "./components/OrderList.jsx";
+import React, { FC, createContext, useContext } from 'react';
+import Customer, { CustomerData } from './Customer.tsx';
+import useLocalStorage from './hooks/useLocalStorage.ts';
+import { GuestOrderContext } from './App';
 
 // Create a Context for the Customers
-export const CustomersContext = createContext<CustomerData[]>([]);
+interface CustomersContextType {
+  customers: CustomerData[];
+  setCustomers: React.Dispatch<React.SetStateAction<CustomerData[]>>;
+}
 
-const Customers: FC = () => {
-  const [customers, setCustomers] = useLocalStorage<CustomerData[]>(
-    "customers",
-    [
-      { id: "1", isActive: true, foods: [{}], total: 0 },
-      { id: "2", isActive: false, foods: [{}], total: 0 },
-      { id: "3", isActive: false, foods: [{}], total: 0 },
-    ]
-  );
+export const CustomersContext = createContext<CustomersContextType | undefined>(undefined);
+
+const Customers: FC<{ guestOrder: any[] }> = ({ guestOrder: guestOrderProp }) => {
+  const { guestOrder } = useContext(GuestOrderContext);
+  const [customers, setCustomers] = useLocalStorage<CustomerData[]>('customers', [
+    { id: '1', isActive: true, foods: [], total: 0 },
+    { id: '2', isActive: false, foods: [], total: 0 },
+    { id: '3', isActive: false, foods: [], total: 0 },
+  ]);
 
   // Function to handle customer click
   const handleCustomerClick = (index: number) => {
@@ -36,29 +39,26 @@ const Customers: FC = () => {
     const newCustomer: CustomerData = {
       id: `${customers.length + 1}`,
       isActive: false,
-      foods: [{}],
+      foods: [],
       total: 0,
     };
     setCustomers([...customers, newCustomer]);
   };
 
   return (
-    <CustomersContext.Provider value={customers}>
+    <CustomersContext.Provider value={{ customers, setCustomers }}>
       <div>
         <h1>Food List</h1>
-        <OrderList />
         <div>
           {customers.map((customer, index) => (
-            <div>
+            <div key={index}>
               <Customer
-                key={index}
-                customer={customer}
+                customer={{ ...customer, foods: guestOrder }}
                 onClick={() => handleCustomerClick(index)}
                 onRemove={() => handleRemoveCustomer(index)}
               />
             </div>
           ))}
-
           <button onClick={addCustomer}>+</button>
         </div>
       </div>

@@ -4,7 +4,7 @@ import React, { FC } from "react";
 export interface CustomerData {
   id: string;
   isActive: boolean;
-  foods: [{}];
+  foods: { name: string; price: number }[];
   total: number;
 }
 
@@ -24,7 +24,7 @@ const Customer: FC<{
     >
       <h3>{customer.id}</h3>
       <p>Status: {customer.isActive ? "Active" : "Inactive"}</p>
-      <p>Foods: {customer.foods.join(", ")}</p>
+      <p>Foods: {customer.foods.map((food) => food.name).join(", ")}</p>
       <p>Total: {customer.total}</p>
       <button
         onClick={(e) => {

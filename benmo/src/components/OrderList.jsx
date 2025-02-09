@@ -1,27 +1,40 @@
-import { React, useState, useEffect, useContext } from "react";
-import TestA from "./TestA";
-import { CustomersContext } from "../Customers.tsx";
-
-//const OrderContext = createContext();
+import React, { useState, useEffect, useContext, useRef } from 'react';
+import TestA from './TestA';
+import { CustomersContext } from '../Customers.tsx';
+import { GuestOrderContext } from '../App';
 
 const OrderList = () => {
-  const [guestOrder, setGuestOrder] = useState([]);
+  const { guestOrder, setGuestOrder } = useContext(GuestOrderContext);
   const [itemSum, setItemSum] = useState([
-    { name: "fries", price: 2.0, isClicked: false },
-    { name: "pizza", price: 3.0, isClicked: false },
-    { name: "soda", price: 1.0, isClicked: false },
+    { name: 'fries', price: 2.0, isClicked: false },
+    { name: 'pizza', price: 3.0, isClicked: false },
+    { name: 'soda', price: 1.0, isClicked: false },
   ]);
-  const { foodOrder, setFoodOrder } = useContext(CustomersContext);
+
+  const context = useContext(CustomersContext);
+  if (!context) {
+    throw new Error('CustomersContext must be used within a CustomersContext.Provider');
+  }
+  const { customers, setCustomers } = context;
+
+  const prevGuestOrderRef = useRef(guestOrder);
 
   useEffect(() => {
-    if (foodOrder) {
-      const updatedOrder = { ...foodOrder, foods: guestOrder };
-      setFoodOrder(updatedOrder); // Assuming setGuest will update the guest in context
+    const prevGuestOrder = prevGuestOrderRef.current;
+    if (prevGuestOrder !== guestOrder) {
+      const activeCustomer = customers.find((customer) => customer.isActive);
+      if (activeCustomer) {
+        const updatedCustomer = { ...activeCustomer, foods: guestOrder };
+        setCustomers(
+          customers.map((customer) =>
+            customer.id === activeCustomer.id ? updatedCustomer : customer
+          )
+        );
+      }
+      prevGuestOrderRef.current = guestOrder;
     }
-    console.log(foodOrder);
-  }, [guestOrder, foodOrder, setFoodOrder]);
+  }, [guestOrder, customers, setCustomers]);
 
-  //console.log(itemSum);
   const handleClick = (fItem) => {
     const updatedItemSum = itemSum.map((item) =>
       item.name === fItem.name ? { ...item, isClicked: !item.isClicked } : item
@@ -50,7 +63,6 @@ const OrderList = () => {
           </div>
         ))}
       </ul>
-      {console.log(guestOrder)}
     </div>
   );
 };
