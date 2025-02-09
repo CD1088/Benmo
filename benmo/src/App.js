@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import RenderFoodItem from './foodItem'
 import './App.css';
 
 function App() {
+  const item1 = {
+    name: "Noodles",
+    cost: 15,
+    owner: 1
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <table>
+        <tr>
+          <th>Item</th>
+          <th>Cost</th>
+        </tr>
+        <RenderFoodItem foodItem={item1} user="3" />
+      </table>
     </div>
   );
 }
