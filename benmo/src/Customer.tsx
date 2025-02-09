@@ -13,7 +13,7 @@ const Customer: FC<{ customer: Customer; onClick: () => void }> = ({ customer, o
     return (
         <div onClick={onClick} style={{ cursor: 'pointer', backgroundColor: customer.isActive ? 'lightgreen' : 'white' }}>
             <h3>{customer.id}</h3>
-            <p>Email: {customer.isActive ? 'Active' : 'Inactive'}</p>
+            <p>Status: {customer.isActive ? 'Active' : 'Inactive'}</p>
             <p>Foods: {customer.foods.join(', ')}</p>
             <p>Total: {customer.total}</p>
         </div>
