@@ -1,0 +1,205 @@
+.container {
+  background-color: #fff;
+  padding-left: 35px;
+  overflow: hidden;
+}
+
+.content {
+  display: flex;
+  gap: 20px;
+}
+
+.orderSection {
+  width: 58%;
+}
+
+.checkoutSection {
+  width: 42%;
+}
+
+.pageTitle {
+  font-size: 36px;
+  font-family: Carter One, -apple-system, Roboto, Helvetica, sans-serif;
+  line-height: 1;
+  text-align: center;
+  margin: 20px 0 0 61px;
+}
+
+.foodList {
+  display: flex;
+  flex-direction: column;
+  gap: 51px;
+  margin-top: 51px;
+  width: 100%;
+  font-size: 16px;
+  color: #000;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.foodItem {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.imageWrapper {
+  width: 33%;
+}
+
+.foodImage {
+  aspect-ratio: 1.42;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  min-height: 20px;
+  min-width: 20px;
+  overflow: hidden;
+}
+
+.foodDetails {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.foodName {
+  font-family: Carter One, display;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.foodInfo {
+  font-size: 22px;
+  font-family: Carter One, display;
+}
+
+.priceWrapper {
+  width: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.price {
+  font-size: 32px;
+  font-family: Carter One, display;
+  font-weight: 600;
+  text-align: center;
+}
+
+.checkoutContainer {
+  background-color: #c8c8c8;
+  display: flex;
+  width: 100%;
+  padding: 20px 39px 406px;
+  flex-direction: column;
+  align-items: center;
+  font-family: Carter One, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 16px;
+  color: #000;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 0.5px;
+  height: auto;
+  flex-grow: 1;
+}
+
+.checkoutTitle {
+  font-size: 36px;
+  line-height: 1;
+  margin: 20px 0 0 11px;
+}
+
+.foodPriceTotal {
+  margin-top: 118px;
+  font-size: 24px;
+}
+
+.taxAmount {
+  margin-top: 41px;
+  font-size: 24px;
+}
+
+.totalAmount {
+  margin-top: 44px;
+  font-size: 42px;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.payButton,
+.groupPayButton {
+  all: unset;
+  padding: 15px 25px;
+  background-color: black;
+  color: white;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 36px;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 991px) {
+  .container {
+    padding-left: 20px;
+  }
+
+  .content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .orderSection,
+  .checkoutSection {
+    width: 100%;
+  }
+
+  .foodList {
+    max-width: 100%;
+    margin-top: 40px;
+  }
+
+  .foodItem {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .imageWrapper,
+  .foodDetails,
+  .priceWrapper {
+    width: 100%;
+  }
+
+  .checkoutContainer {
+    max-width: 100%;
+    margin-top: 40px;
+    padding: 20px 20px 100px;
+  }
+
+  .foodPriceTotal,
+  .taxAmount,
+  .totalAmount {
+    margin-top: 40px;
+  }
+
+  .buttonContainer {
+    flex-direction: column;
+    margin-top: 40px;
+  }
+
+  .payButton,
+  .groupPayButton {
+    width: 100%;
+  }
+}
